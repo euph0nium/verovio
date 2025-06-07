@@ -69,6 +69,9 @@ function getToolkitFunction(VerovioModule, method) {
     // int getPageCount(Toolkit *ic)
     mapping.getPageCount = VerovioModule.cwrap("vrvToolkit_getPageCount", "number", ["number"]);
 
+    // int getStaffCount(Toolkit *ic)
+    mapping.getStaffCount = VerovioModule.cwrap("vrvToolkit_getStaffCount", "number", ["number"]);
+
     // int getPageWithElement(Toolkit *ic, const char *xmlId)
     mapping.getPageWithElement = VerovioModule.cwrap("vrvToolkit_getPageWithElement", "number", ["number", "string"]);
 

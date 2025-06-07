@@ -199,6 +199,12 @@ int vrvToolkit_getPageCount(void *tkPtr)
     return tk->GetPageCount();
 }
 
+int vrvToolkit_getStaffCount(void *tkPtr)
+{
+	Toolkit *tk = static_cast<Toolkit *>(tkPtr);
+    return tk->GetStaffCount();
+}
+
 int vrvToolkit_getPageWithElement(void *tkPtr, const char *xmlId)
 {
     Toolkit *tk = static_cast<Toolkit *>(tkPtr);

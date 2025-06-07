@@ -20,6 +20,7 @@ _vrvToolkit_getMIDIValuesForElement
 _vrvToolkit_getNotatedIdForElement
 _vrvToolkit_getOptions
 _vrvToolkit_getPageCount
+_vrvToolkit_getStaffCount
 _vrvToolkit_getPageWithElement
 _vrvToolkit_getTimeForElement
 _vrvToolkit_getTimesForElement

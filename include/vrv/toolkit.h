@@ -195,6 +195,9 @@ public:
      */
     int GetPageCount();
 
+
+    int GetStaffCount();
+
     ///@}
 
     /**

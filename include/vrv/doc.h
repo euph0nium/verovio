@@ -150,6 +150,8 @@ public:
      */
     int GetPageCount() const;
 
+    int GetStaffCount();
+
     /**
      * Get the first scoreDef
      */

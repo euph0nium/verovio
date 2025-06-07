@@ -2004,6 +2004,11 @@ int Toolkit::GetPageCount()
     return m_doc.GetPageCount();
 }
 
+int Toolkit::GetStaffCount()
+{
+    return m_doc.GetStaffCount();
+}
+
 std::string Toolkit::GetDescriptiveFeatures(const std::string &options)
 {
     // For now do not handle any option

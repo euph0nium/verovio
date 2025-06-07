@@ -100,6 +100,10 @@ export class VerovioToolkit {
         return this.proxy.getPageCount(this.ptr);
     }
 
+    getStaffCount() {
+        return this.proxy.getStaffCount(this.ptr);
+    }
+
     getPageWithElement(xmlId) {
         return this.proxy.getPageWithElement(this.ptr, xmlId);
     }
@@ -115,7 +119,6 @@ export class VerovioToolkit {
     getVersion() {
         return this.proxy.getVersion(this.ptr);
     }
-
     loadData(data) {
         return this.proxy.loadData(this.ptr, data);
     }

@@ -1641,6 +1641,18 @@ int Doc::GetPageCount() const
     return ((pages) ? pages->GetChildCount() : 0);
 }
 
+int Doc::GetStaffCount()
+{
+    const Score *score = this->GetFirstVisibleScore();
+    if (!score) return 0;
+
+    const ScoreDef *scoreDef = score->GetScoreDef();
+    if (!scoreDef) return 0;
+
+    auto staves = scoreDef->FindAllDescendantsByType(STAFFDEF, false);
+    return static_cast<int>(staves.size());
+}
+
 ScoreDef *Doc::GetFirstScoreDef()
 {
     return const_cast<ScoreDef *>(std::as_const(*this).GetFirstScoreDef());
