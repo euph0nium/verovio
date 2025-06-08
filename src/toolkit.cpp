@@ -1828,6 +1828,51 @@ std::string Toolkit::RenderToMIDI()
     return outputstr;
 }
 
+std::string Toolkit::RenderToMIDIWithOptions(const std::string &jsonOptions)
+{
+    this->ResetLogBuffer();
+
+    // 解析 jsonOptions
+    jsonxx::Object json;
+    std::vector<int> selectedStaff;
+
+    if (!jsonOptions.empty()) {
+        if (!json.parse(jsonOptions)) {
+            LogWarning("Cannot parse JSON std::string. Using default options.");
+        }
+        else {
+            if (json.has<jsonxx::Array>("staff")) {
+                auto staffArray = json.get<jsonxx::Array>("staff");
+                for (int i = 0; i < static_cast<int>(staffArray.size()); ++i) {
+                    if (staffArray.has<jsonxx::Number>(i)) {
+                        selectedStaff.push_back(static_cast<int>(staffArray.get<jsonxx::Number>(i)));
+                    }
+                }
+            }
+        }
+    }
+
+    // 设置 staff selection 到 m_doc，假设你改造了 m_doc.ExportMIDI 支持 staff 过滤
+    if (!selectedStaff.empty()) {
+        m_doc.SetMIDIStaffSelection(selectedStaff);
+    } else {
+        // 清空 selection，导出全部 staff
+        m_doc.ClearMIDIStaffSelection();
+    }
+
+    // 调用 ExportMIDI
+    smf::MidiFile outputfile;
+    m_doc.ExportMIDI(&outputfile);
+
+    std::stringstream stream;
+    outputfile.write(stream);
+    std::string outputstr = Base64Encode(
+        reinterpret_cast<const unsigned char *>(stream.str().c_str()), (unsigned int)stream.str().length());
+
+    return outputstr;
+}
+
+
 std::string Toolkit::RenderToPAE()
 {
     this->ResetLogBuffer();

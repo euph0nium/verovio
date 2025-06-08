@@ -279,6 +279,10 @@ public:
      */
     bool HasTimemap() const;
 
+    void SetMIDIStaffSelection(const std::vector<int>& staffSelection);
+    void ClearMIDIStaffSelection();
+    const std::vector<int>& GetMIDIStaffSelection() const;
+
     /**
      * Export the document to a MIDI file.
      * Run trough all the layers and fill the MIDI file content.
@@ -573,6 +577,8 @@ private:
      * Reset the document focus
      */
     void ResetFocus();
+
+    std::vector<int> m_selectedStaffForMIDI;
 
 public:
     Page *m_selectionPreceding;

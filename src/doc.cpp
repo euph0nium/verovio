@@ -426,6 +426,21 @@ void Doc::CalculateTimemap()
     m_timemapTempo = m_options->m_midiTempoAdjustment.GetValue();
 }
 
+void Doc::SetMIDIStaffSelection(const std::vector<int>& staffSelection)
+{
+    m_selectedStaffForMIDI = staffSelection;
+}
+
+void Doc::ClearMIDIStaffSelection()
+{
+    m_selectedStaffForMIDI.clear();
+}
+
+const std::vector<int>& Doc::GetMIDIStaffSelection() const
+{
+    return m_selectedStaffForMIDI;
+}
+
 void Doc::ExportMIDI(smf::MidiFile *midiFile)
 {
     midiFile->absoluteTicks();
@@ -477,6 +492,12 @@ void Doc::ExportMIDI(smf::MidiFile *midiFile)
     int midiTrack = 1;
     Filters filters;
     for (auto &staves : layerTree.child) {
+        const std::vector<int>& selectedStaff = this->GetMIDIStaffSelection();
+        bool filterStaff = !selectedStaff.empty();
+        if (filterStaff && std::find(selectedStaff.begin(), selectedStaff.end(), staves.first) == selectedStaff.end()) {
+            continue;
+        }
+
         int transSemi = 0;
         if (StaffDef *staffDef = scoreDef->GetStaffDef(staves.first)) {
             // get the transposition (semi-tone) value for the staff

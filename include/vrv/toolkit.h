@@ -378,6 +378,9 @@ public:
      */
     std::string RenderToMIDI();
 
+
+    std::string RenderToMIDIWithOptions(const std::string &jsonOptions);
+
     /**
      * Render a document to MIDI and save it to the file.
      *

@@ -58,6 +58,7 @@ const char *vrvToolkit_renderData(void *tkPtr, const char *data, const char *opt
 const char *vrvToolkit_renderToExpansionMap(void *tkPtr);
 bool vrvToolkit_renderToExpansionMapFile(void *tkPtr, const char *filename);
 const char *vrvToolkit_renderToMIDI(void *tkPtr);
+const char *vrvToolkit_renderToMIDIWithOptions(void *tkPtr, const char *options);
 bool vrvToolkit_renderToMIDIFile(void *tkPtr, const char *filename);
 const char *vrvToolkit_renderToPAE(void *tkPtr);
 bool vrvToolkit_renderToPAEFile(void *tkPtr, const char *filename);

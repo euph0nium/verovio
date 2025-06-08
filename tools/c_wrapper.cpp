@@ -307,6 +307,14 @@ const char *vrvToolkit_renderToMIDI(void *tkPtr)
     return tk->GetCString();
 }
 
+const char *vrvToolkit_renderToMIDIWithOptions(void *tkPtr, const char *options)
+{
+    Toolkit *tk = static_cast<Toolkit *>(tkPtr);
+    tk->SetCString(tk->RenderToMIDIWithOptions(options));
+    return tk->GetCString();
+}
+
+
 bool vrvToolkit_renderToMIDIFile(void *tkPtr, const char *filename)
 {
     Toolkit *tk = static_cast<Toolkit *>(tkPtr);
