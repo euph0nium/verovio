@@ -104,6 +104,10 @@ export class VerovioToolkit {
         return this.proxy.getStaffCount(this.ptr);
     }
 
+    getAllNotes() {
+        return JSON.parse(this.proxy.getAllNotes(this.ptr));
+    }
+
     getPageWithElement(xmlId) {
         return this.proxy.getPageWithElement(this.ptr, xmlId);
     }

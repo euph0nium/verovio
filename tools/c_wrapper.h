@@ -42,6 +42,7 @@ const char *vrvToolkit_getOptions(void *tkPtr);
 const char *vrvToolkit_getOptionUsageString(void *tkPtr);
 int vrvToolkit_getPageCount(void *tkPtr);
 int vrvToolkit_getStaffCount(void *tkPtr);
+const char *vrvToolkit_getAllNotes(void *tkPtr);
 int vrvToolkit_getPageWithElement(void *tkPtr, const char *xmlId);
 const char *vrvToolkit_getResourcePath(void *tkPtr);
 int vrvToolkit_getScale(void *tkPtr);

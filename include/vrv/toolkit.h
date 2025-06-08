@@ -198,6 +198,8 @@ public:
 
     int GetStaffCount();
 
+    std::string GetAllNotes();
+
     ///@}
 
     /**

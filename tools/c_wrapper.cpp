@@ -205,6 +205,13 @@ int vrvToolkit_getStaffCount(void *tkPtr)
     return tk->GetStaffCount();
 }
 
+const char *vrvToolkit_getAllNotes(void *tkPtr)
+{
+    Toolkit *tk = static_cast<Toolkit *>(tkPtr);
+    tk->SetCString(tk->GetAllNotes());
+    return tk->GetCString();
+}
+
 int vrvToolkit_getPageWithElement(void *tkPtr, const char *xmlId)
 {
     Toolkit *tk = static_cast<Toolkit *>(tkPtr);

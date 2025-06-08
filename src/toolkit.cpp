@@ -2054,6 +2054,40 @@ int Toolkit::GetStaffCount()
     return m_doc.GetStaffCount();
 }
 
+std::string Toolkit::GetAllNotes()
+{
+    this->ResetLogBuffer();
+
+    jsonxx::Array noteArray;
+
+    // 遍历所有 NOTE
+    ClassIdComparison matchNote(NOTE);
+    ListOfObjects notes;
+    m_doc.FindAllDescendantsByComparison(&notes, &matchNote);
+
+    for (Object *object : notes) {
+        Note *note = vrv_cast<Note *>(object);
+        assert(note);
+
+        std::string xmlId = note->GetID();
+        int pageNo = this->GetPageWithElement(xmlId);
+        int staffNo = note->GetAncestorStaff()->GetN();
+
+        // 组织成 JSON
+        jsonxx::Object noteObj;
+        noteObj << "id" << xmlId;
+        noteObj << "page" << pageNo;
+        noteObj << "staff" << staffNo;
+
+        noteArray << noteObj;
+    }
+
+    // 最终返回一个 { "notes": [...] } 的 json
+    jsonxx::Object result;
+    result << "notes" << noteArray;
+    return result.json();
+}
+
 std::string Toolkit::GetDescriptiveFeatures(const std::string &options)
 {
     // For now do not handle any option
